@@ -504,6 +504,8 @@ public class IdentityBrokerService implements IdentityProvider.AuthenticationCal
                         return corsResponse(notFound("No token stored for user [" + authResult.getUser().getId() + "] with associated identity provider [" + providerAlias + "]."), clientModel);
                     }
 
+                    logger.debugv("Found the token, about to fetch the token from identityProvider");
+
                     this.event.success();
 
                     return corsResponse(identityProvider.retrieveToken(session, identity), clientModel);
